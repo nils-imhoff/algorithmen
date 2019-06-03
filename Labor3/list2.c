@@ -196,23 +196,6 @@ List_P sortList(List_P list)
 
 
 
-
-void lastList(List_P *anchor)
-{
-   List_P  h;
-   List_P l = NULL;
-
-   while(*anchor)
-   {
-      h = extractLast(anchor);
-
-      printf("extract %s", h->payload);
-      h->next = NULL;
-      inserLast(&l, h);
-   }   
-   printList(stdout, l);
-}
-
 int main(int argc, char *argv[])
 {
    FILE *in = stdin;
@@ -248,7 +231,7 @@ int main(int argc, char *argv[])
 
   /* 
   printf("Test: \n=====\n");
-  lastList(&l1); 
+  extractLast(&l1); 
    */
 
    printf("Sort: \n======\n");
