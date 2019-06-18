@@ -3,8 +3,8 @@
 #include <string.h>
 #include <stdbool.h>
 
-#define MAXCOLS  256
-#define MAXROWS  256
+#define MAXCOLS  2048
+#define MAXROWS  2048
 
 
 
@@ -184,7 +184,7 @@ int main(int argc, char *argv[])
    }
    lab = readLab(in);
    findLab(lab);
-   cost = countLab(lab, move, lab->startx, lab->starty, print) -1;
+   cost = countLab(lab, move, lab->startx, lab->starty, print);
    if(cost==0)
    {
       printLab(stdout, lab);
