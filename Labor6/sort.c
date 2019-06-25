@@ -36,23 +36,19 @@ void printArray(int* arr, int elements) {
 }
 
 
-void mQsort(int *left, int *right) {
-   int *p1 = left;
-   int *p2 = right;
-   int w, x;
- 
-   x = *(left + (right - left >> 1));
-   do {
-      while(*p1 < x) p1++;
-      while(*p2 > x) p2--;
-      if(p1 > p2)
-         break;
-      w = *p1;
-      *p1 = *p2;
-      *p2 = w;
-   } while(++p1 <= --p2);
-   if(left < p2)  mQsort(left, p2);
-   if(p1 < right) mQsort(p1, right);
+void quicksort(int *target, int left, int right) {
+  if(left >= right) return;
+  int i = left, j = right;
+  int tmp, pivot = target[i];
+  for(;;) {
+    while(target[i] < pivot) i++;
+    while(pivot < target[j]) j--;
+    if(i >= j) break;
+    tmp = target[i]; target[i] = target[j]; target[j] = tmp;
+    i++; j--;
+  }
+  quicksort(target, left, i-1);
+  quicksort(target, j+1, right);
 }
 
 int cmpInteger(const void *wert1, const void *wert2) {
@@ -101,7 +97,7 @@ int main(int argc, char *argv[]) {
    }
   
    start = clock();
-   mQsort(d, d+c-1);
+   quicksort(d, 0, c-1);
    ende = clock();
    //if(c <100) printArray(d, c);
    printf("Quick-Sort: %.10f\n",
